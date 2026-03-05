@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Evita que el sitio aparezca en Google e índices de búsqueda -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Acceso Privado - Reporte de Rendimiento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; padding: 0; }
+            .shadow-sm { border: 1px solid #e2e8f0; box-shadow: none; }
+            .bg-slate-50 { background-color: white; }
+        }
+        /* Animación suave para la entrada */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Pantalla de Loggeo -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center p-6 bg-slate-900">
+        <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 space-y-6 fade-in">
+            <div class="text-center">
+                <div class="bg-indigo-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-extrabold text-slate-900">Acceso al Reporte</h2>
+                <p class="text-slate-500 text-sm mt-2">Introduce la clave de acceso para visualizar las métricas de campaña.</p>
+            </div>
+
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Contraseña</label>
+                    <input type="password" id="password" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-slate-700"
+                        placeholder="••••••••">
+                </div>
+                <div id="error-msg" class="hidden text-red-500 text-xs font-medium bg-red-50 p-3 rounded-lg border border-red-100 italic">
+                    Contraseña incorrecta. Por favor, inténtalo de nuevo.
+                </div>
+                <button type="submit" 
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95">
+                    Entrar al Dashboard
+                </button>
+            </form>
+
+            <div class="text-center">
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">KITCHEN CENTER | ECOMMERCE</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido del Reporte (Oculto por defecto) -->
+    <div id="dashboard-content" class="hidden">
+        <!-- Botón Logout -->
+        <div class="max-w-5xl mx-auto px-6 pt-6 no-print text-right">
+            <button onclick="logout()" class="text-xs font-bold text-slate-400 hover:text-red-500 flex items-center gap-1 ml-auto transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Cerrar Sesión
+            </button>
+        </div>
+
+        <div class="max-w-5xl mx-auto p-6 md:p-10 space-y-8 fade-in">
+            
+            <!-- Vista previa del Banner (Formato Cuadrado Desktop) -->
+            <section class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+                <div class="p-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <span>Visual de Campaña</span>
+                    <span>Bar y Mixología</span>
+                </div>
+                <div class="p-8 flex justify-center bg-slate-50/50">
+                    <div class="max-w-sm w-full shadow-lg rounded-xl overflow-hidden border border-slate-200 bg-white">
+                        <p class="p-2 text-[9px] font-bold text-slate-400 uppercase text-center border-b border-slate-50">Arte Cuadrado (Desktop Only)</p>
+                        <img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/Bar_y_Mixologia_4.webp?v=1771516881" 
+                             alt="Banner Bar y Mixología" class="w-full h-auto block">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Encabezado -->
+            <header class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+                <div>
+                    <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">Reporte de Conversión</h1>
+                    <p class="text-slate-500 mt-1">Análisis de rendimiento: Banner Bar y Mixología.</p>
+                </div>
+                <div class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-bold inline-flex items-center gap-2">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                    REPORTE CONSOLIDADO
+                </div>
+            </header>
+
+            <!-- Cuadrícula de Métricas -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-xl border border-slate-200">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Ventas Atribuidas</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">$ 16.798</h3>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Ticket Promedio</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">$ 16.798</h3>
+                    <p class="text-slate-400 text-[10px] mt-1 italic">Venta única post-clic</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">CTR</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">0,17%</h3>
+                    <p class="text-slate-400 text-[10px] mt-1">Click-through rate</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200">
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Conversión</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">1,3%</h3>
+                    <p class="text-slate-400 text-[10px] mt-1">Tasa de cierre post-clic</p>
+                </div>
+            </div>
+
+            <!-- Métricas de Tráfico -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-slate-100/50 p-4 rounded-lg border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-medium">Sesiones Home</span>
+                    <span class="font-bold text-slate-700">58.481</span>
+                </div>
+                <div class="bg-slate-100/50 p-4 rounded-lg border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-medium">Total Clics</span>
+                    <span class="font-bold text-slate-700">101</span>
+                </div>
+                <div class="bg-slate-100/50 p-4 rounded-lg border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-medium">Clics Únicos</span>
+                    <span class="font-bold text-slate-700">77</span>
+                </div>
+                <div class="bg-slate-100/50 p-4 rounded-lg border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-medium">Cl. Post Clic</span>
+                    <span class="font-bold text-slate-700 font-black text-indigo-600">1</span>
+                </div>
+            </div>
+
+            <!-- Detalle de Ventas -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-5 border-b border-slate-100">
+                    <h2 class="font-bold text-slate-800">Detalle de Productos Vendidos (Post-Clic)</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-400 font-bold uppercase text-[10px]">
+                                <th class="px-6 py-4">Fecha / Pedido</th>
+                                <th class="px-6 py-4">SKU</th>
+                                <th class="px-6 py-4">Descripción</th>
+                                <th class="px-6 py-4 text-center">Cant.</th>
+                                <th class="px-6 py-4 text-right">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-slate-700">20-02-2026 <br><span class="text-[10px] text-slate-400"># 870621</span></td>
+                                <td class="px-6 py-4 text-slate-400 font-mono text-xs">13945</td>
+                                <td class="px-6 py-4 text-slate-600">Descorchador de Vinos Recargable Cave - Acero</td>
+                                <td class="px-6 py-4 text-center font-bold">1</td>
+                                <td class="px-6 py-4 text-right font-bold">$ 16.798</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-emerald-50/50 text-emerald-800 font-bold border-t border-emerald-100">
+                                <td colspan="3" class="px-6 py-4 text-xs uppercase">Total Acumulado</td>
+                                <td class="px-6 py-4 text-center">1</td>
+                                <td class="px-6 py-4 text-right text-lg">$ 16.798</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Conclusión -->
+            <div class="bg-indigo-900 text-white p-8 rounded-2xl relative overflow-hidden shadow-lg border-b-4 border-indigo-500">
+                <h3 class="text-xl font-bold mb-6 italic">"Conclusión del Rendimiento del Banner: Bar y Mixología"</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <p class="text-indigo-100 text-sm leading-relaxed">
+                            A pesar de tener una exposición masiva (<strong>58.481 sesiones</strong>), la interacción con el banner fue baja, con un <strong>CTR de 0,17%</strong>. Esto indica que, aunque el arte es visualmente atractivo, apela a un nicho muy específico de usuarios en la Home.
+                        </p>
+                        <p class="text-indigo-100 text-sm leading-relaxed">
+                            Se logró concretar <strong>1 venta directa post-clic</strong> (Descorchador de Vinos), lo que resulta en una tasa de conversión del 1,3%. A diferencia de campañas anteriores, la compra fue coherente con la categoría promocionada.
+                        </p>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-xl border border-white/20 backdrop-blur-sm self-center text-center md:text-left">
+                        <p class="text-emerald-400 font-bold text-[10px] uppercase tracking-widest mb-2">Insight de Campaña</p>
+                        <p class="text-white text-sm leading-relaxed font-medium">
+                            El banner funciona como un filtro de alta intención: atrae a pocos usuarios (77 únicos), pero con una necesidad clara hacia la categoría. Ideal para visibilidad de marca en mixología, aunque con bajo volumen de transacciones inmediatas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="text-center py-10 border-t border-slate-200 no-print">
+                <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">KITCHEN CENTER | ECOMMERCE 2026</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de acceso
+        const VALID_PASS = "Electro2026!";
+
+        const loginForm = document.getElementById('login-form');
+        const loginScreen = document.getElementById('login-screen');
+        const dashboardContent = document.getElementById('dashboard-content');
+        const errorMsg = document.getElementById('error-msg');
+        const passInput = document.getElementById('password');
+
+        // FORZAR LOGIN SIEMPRE AL CARGAR (SOLUCIÓN GITHUB)
+        loginScreen.classList.remove('hidden');
+        dashboardContent.classList.add('hidden');
+        sessionStorage.removeItem('report_access');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passInput.value === VALID_PASS) {
+                sessionStorage.setItem('report_access', 'true');
+                showDashboard();
+            } else {
+                errorMsg.classList.remove('hidden');
+                passInput.value = '';
+                passInput.focus();
+            }
+        });
+
+        function showDashboard() {
+            loginScreen.classList.add('hidden');
+            dashboardContent.classList.remove('hidden');
+            document.title = "Reporte - Bar y Mixología";
+        }
+
+        function logout() {
+            sessionStorage.removeItem('report_access');
+            location.reload();
+        }
+    </script>
+
+</body>
+</html>
