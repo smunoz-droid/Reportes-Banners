@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estimación Antropométrica — Nutrición Clínica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #ffffff;
+      --bg2:     #f5eeff;
+      --card:    #fdf8ff;
+      --ink:     #2a1a38;
+      --ink2:    #6b4e82;
+      --accent:  #c084d4;
+      --accent2: #e8a5c4;
+      --accent3: #a78bca;
+      --border:  #dcc8e8;
+      --muted:   #9a82aa;
+      --danger:  #e8908a;
+      --radius:  12px;
+      --rsm:     8px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fff;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      max-width: 580px;
+      margin: 0 auto 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .header-icon {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(192,132,212,0.3);
+    }
+    .header-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+      color: #2a1a38;
+      line-height: 1.2;
+    }
+    .header-text .subtitle {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .header-text .author {
+      font-size: 0.75rem;
+      color: var(--accent3);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    /* ── MAIN CARD ── */
+    .container { max-width: 580px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+
+    .card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(60,30,90,0.05);
+    }
+    .card-head {
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      color: #fff;
+      padding: 0.75rem 1.2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .card-head .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.5); }
+    .card-body { padding: 1.2rem; }
+
+    /* ── RADIO ── */
+    .field-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .radio-group { display: flex; gap: 0.5rem; margin-bottom: 1.1rem; }
+    .radio-label {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--rsm);
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.18s;
+      background: #fff;
+      color: var(--muted);
+      user-select: none;
+    }
+    .radio-label input { display: none; }
+    .radio-label.sel-m { border-color: #86b0e0; background: rgba(134,176,224,0.1); color: #3a6fb0; font-weight: 500; }
+    .radio-label.sel-f { border-color: var(--accent2); background: rgba(232,165,196,0.12); color: #b05070; font-weight: 500; }
+
+    /* ── FIELDS ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    @media (max-width: 440px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; gap: 0.28rem; }
+
+    label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    label span.req { color: var(--accent); }
+
+    input[type="number"] {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      background: var(--bg2);
+      border: 1.5px solid var(--border);
+      border-radius: var(--rsm);
+      padding: 0.58rem 0.8rem;
+      color: var(--ink);
+      width: 100%;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      -webkit-appearance: none;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,132,212,0.15);
+    }
+    input[type="number"]::placeholder { color: #cdb8dc; }
+    .unit-hint { font-size: 0.58rem; color: var(--muted); }
+
+    /* ── BUTTONS ── */
+    .btn-row { display: flex; gap: 0.6rem; margin-top: 1rem; }
+    .calc-btn {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: var(--rsm);
+      padding: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(167,139,202,0.35);
+      transition: opacity 0.18s, transform 0.1s;
+    }
+    .calc-btn:hover { opacity: 0.88; }
+    .calc-btn:active { transform: scale(0.98); }
+    .reset-btn {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+      border-radius: var(--rsm);
+      padding: 0.85rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .reset-btn:hover { border-color: var(--accent2); color: var(--ink2); background: var(--bg2); }
+
+    /* ── ERROR ── */
+    .error-msg { display: none; color: var(--danger); font-size: 0.66rem; margin-top: 0.4rem; }
+    .error-msg.visible { display: block; }
+
+    /* ── RESULTS PANEL ── */
+    .results-panel {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 1rem;
+      animation: pop 0.28s ease;
+      box-shadow: 0 2px 12px rgba(60,30,90,0.06);
+    }
+    .results-panel.visible { display: flex; }
+    @keyframes pop { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+    .results-header {
+      background: linear-gradient(135deg, var(--accent2), #d4a0cc);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--card);
+    }
+    @media (max-width: 400px) { .results-grid { grid-template-columns: 1fr; } }
+
+    .result-block {
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      border-right: 1px solid var(--border);
+    }
+    .result-block:last-child { border-right: none; }
+    @media (max-width: 400px) {
+      .result-block { border-right: none; border-bottom: 1px solid var(--border); }
+      .result-block:last-child { border-bottom: none; }
+    }
+
+    .result-label { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .result-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .result-unit { font-size: 0.72rem; color: var(--muted); margin-left: 0.2rem; }
+    .result-sub  { font-size: 0.62rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* ── IMC BADGE ── */
+    .imc-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      margin-top: 0.35rem;
+      width: fit-content;
+    }
+    .imc-bajo   { background: #dceeff; color: #2a6aad; }
+    .imc-normal { background: #d8f5e4; color: #1e7a46; }
+    .imc-sobre  { background: #fff2d4; color: #a06010; }
+    .imc-ob1    { background: #ffe0d4; color: #b03020; }
+    .imc-ob2    { background: #ffd0d0; color: #901818; }
+    .imc-ob3    { background: #f0c0c0; color: #700000; }
+
+    /* ── REF ── */
+    .ref-note {
+      background: linear-gradient(135deg, rgba(192,132,212,0.06), rgba(232,165,196,0.06));
+      border-top: 1px dashed var(--border);
+      padding: 0.65rem 1.1rem;
+      font-size: 0.62rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .ref-note strong { color: var(--ink2); }
+
+    footer {
+      max-width: 580px;
+      margin: 1.8rem auto 0;
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.9;
+      border-top: 1px solid var(--border);
+      padding-top: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-icon">🌿</div>
+  <div class="header-text">
+    <h1>Estimación Antropométrica<br><em>Paciente Postrado</em></h1>
+    <p class="subtitle">Fórmulas de Chumlea · Nutrición Clínica</p>
+    <p class="author">Nutricionista Judith Fernández</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div class="card-head"><span class="dot"></span>Datos del paciente</div>
+    <div class="card-body">
+
+      <!-- SEXO -->
+      <span class="field-label">Sexo <span style="color:var(--accent)">*</span></span>
+      <div class="radio-group">
+        <label class="radio-label" id="lbl-m" onclick="selectSex('m')">
+          <input type="radio" name="sexo" value="m"> ♂ Masculino
+        </label>
+        <label class="radio-label" id="lbl-f" onclick="selectSex('f')">
+          <input type="radio" name="sexo" value="f"> ♀ Femenino
+        </label>
+      </div>
+
+      <!-- CAMPOS -->
+      <div class="form-grid">
+        <div class="field">
+          <label>ARC — Altura Rodilla–Calcáneo <span class="req">*</span></label>
+          <input type="number" id="arc" placeholder="ej. 47" min="0" max="70" step="0.1"/>
+          <span class="unit-hint">cm · rodilla y tobillo a 90°</span>
+        </div>
+        <div class="field">
+          <label>CB — Circunferencia de Brazo <span class="req">*</span></label>
+          <input type="number" id="cb" placeholder="ej. 28" min="0" max="60" step="0.1"/>
+          <span class="unit-hint">cm · punto medio brazo no dominante</span>
+        </div>
+        <div class="field">
+          <label>Edad <span class="req">*</span></label>
+          <input type="number" id="edad" placeholder="ej. 68" min="18" max="120" step="1"/>
+          <span class="unit-hint">años · ≥ 18</span>
+        </div>
+      </div>
+
+      <div id="error_general" class="error-msg">⚠ Seleccione el sexo y complete todos los campos.</div>
+
+      <div class="btn-row">
+        <button class="calc-btn" onclick="calcularTodo()">Calcular →</button>
+        <button class="reset-btn" onclick="resetTodo()">↺ Restablecer</button>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="results-panel" id="results">
+        <div class="results-header">Resultados estimados</div>
+        <div class="results-grid">
+          <div class="result-block">
+            <span class="result-label">Peso</span>
+            <div>
+              <span class="result-num" id="val_peso">—</span>
+              <span class="result-unit">kg</span>
+            </div>
+            <span class="result-sub">ARC + CB (Chumlea)</span>
+          </div>
+          <div class="result-block">
+            <span class="result-label">Talla</span>
+            <div>
+              <span class="result-num" id="val_talla">—</span>
+              <span class="result-unit">cm</span>
+            </div>
+            <span class="result-sub" id="val_talla_m">— m</span>
+          </div>
+          <div class="result-block">
+            <span class="result-label">IMC</span>
+            <div>
+              <span class="result-num" id="val_imc">—</span>
+              <span class="result-unit">kg/m²</span>
+            </div>
+            <div id="imc_clasif"></div>
+          </div>
+        </div>
+        <div class="ref-note">
+          <strong>Referencia:</strong> Chumlea et al. <em>J Am Diet Assoc.</em> 1994 · IMC clasificación OMS
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  Herramienta de apoyo clínico · No reemplaza el juicio profesional del nutricionista<br>
+  Fórmulas de Chumlea et al. · Solo para adultos ≥ 18 años
+</footer>
+
+<script>
+  let sexo = null;
+
+  function selectSex(val) {
+    sexo = val;
+    document.getElementById('lbl-m').className = 'radio-label' + (val==='m' ? ' sel-m' : '');
+    document.getElementById('lbl-f').className = 'radio-label' + (val==='f' ? ' sel-f' : '');
+  }
+
+  function calcularTodo() {
+    const err  = document.getElementById('error_general');
+    const arc  = parseFloat(document.getElementById('arc').value);
+    const cb   = parseFloat(document.getElementById('cb').value);
+    const edad = parseFloat(document.getElementById('edad').value);
+
+    if (!sexo || isNaN(arc) || isNaN(cb) || isNaN(edad)) {
+      err.classList.add('visible');
+      return;
+    }
+    err.classList.remove('visible');
+
+    // Peso
+    const peso = sexo === 'm'
+      ? (arc * 1.10) + (cb * 3.14) - 83.72
+      : (arc * 1.01) + (cb * 2.81) - 66.04;
+
+    // Talla
+    const talla = sexo === 'm'
+      ? (arc * 2.02) - (edad * 0.04) + 64.19
+      : (arc * 1.83) - (edad * 0.24) + 84.88;
+
+    // IMC
+    const imc = peso / Math.pow(talla / 100, 2);
+
+    // Mostrar
+    document.getElementById('val_peso').textContent  = peso.toFixed(1);
+    document.getElementById('val_talla').textContent = talla.toFixed(1);
+    document.getElementById('val_talla_m').textContent = (talla / 100).toFixed(2) + ' m';
+    document.getElementById('val_imc').textContent   = imc.toFixed(1);
+
+    let cls, label;
+    if      (imc < 18.5) { cls = 'imc-bajo';   label = '⬇ Bajo peso'; }
+    else if (imc < 25)   { cls = 'imc-normal';  label = '✓ Normal'; }
+    else if (imc < 30)   { cls = 'imc-sobre';   label = '↑ Sobrepeso'; }
+    else if (imc < 35)   { cls = 'imc-ob1';     label = '↑↑ Obesidad I'; }
+    else if (imc < 40)   { cls = 'imc-ob2';     label = '↑↑↑ Obesidad II'; }
+    else                 { cls = 'imc-ob3';     label = '⚠ Obesidad III'; }
+
+    document.getElementById('imc_clasif').innerHTML =
+      `<span class="imc-badge ${cls}">${label}</span>`;
+
+    document.getElementById('results').classList.add('visible');
+  }
+
+  function resetTodo() {
+    sexo = null;
+    document.getElementById('lbl-m').className = 'radio-label';
+    document.getElementById('lbl-f').className = 'radio-label';
+    document.getElementById('arc').value   = '';
+    document.getElementById('cb').value    = '';
+    document.getElementById('edad').value  = '';
+    document.getElementById('results').classList.remove('visible');
+    document.getElementById('error_general').classList.remove('visible');
+  }
+</script>
+</body>
+</html>
