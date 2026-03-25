@@ -1,0 +1,556 @@
+<div class="sm-w">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+/* ── BASE ── */
+.sm-w{font-family:'Bai Jamjuree',sans-serif;font-size:18px !important;line-height:1.6;color:#1a1917;background:#F5F5F2;-webkit-font-smoothing:antialiased;width:92%;max-width:1280px;margin:60px auto;border-radius:28px;box-shadow:0 30px 100px rgba(0,0,0,0.12),0 2px 0 rgba(255,255,255,0.8) inset;overflow:hidden;}
+.sm-w *{box-sizing:border-box;font-size:inherit;}
+.sm-w img{display:block;max-width:100%;font-size:initial;}
+.sm-w button{font-family:'Bai Jamjuree',sans-serif;}
+
+/* ── LABELS ── */
+.sm-eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.35em;color:#F5F5F2;display:flex;align-items:center;gap:10px;margin-bottom:1.8rem;}
+.sm-eyebrow::before{content:'';display:block;width:24px;height:1px;background:#F5F5F2;}
+.sm-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.35em;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.sm-label::before{content:'';display:block;width:20px;height:1px;}
+.sm-label--dark{color:#F5F5F2;}
+.sm-label--dark::before{background:#F5F5F2;}
+.sm-label--beige{color:#1f2322;}
+.sm-label--beige::before{background:#1f2322;}
+
+/* ── REVEAL ── */
+.sm-reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s cubic-bezier(0.165,0.84,0.44,1);}
+.sm-reveal.is-visible{opacity:1;transform:translateY(0);}
+.sm-reveal-d1{transition-delay:0.1s;}
+.sm-reveal-d2{transition-delay:0.2s;}
+.sm-reveal-d3{transition-delay:0.3s;}
+
+/* ══════════════════════════════
+   1. HERO
+══════════════════════════════ */
+.sm-hero{display:grid;grid-template-columns:1fr 1fr;min-height:620px;background:#1f2322;border-radius:28px 28px 0 0;overflow:hidden;}
+.sm-hero__copy{display:flex;flex-direction:column;justify-content:center;padding:5rem 9% 5rem 8%;background:#1f2322;position:relative;z-index:2;}
+.sm-hero__copy::after{content:'';position:absolute;top:0;right:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.08),transparent);}
+.sm-hero__title{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(2.6rem,4vw,4rem);font-weight:900;line-height:0.95;color:#ffffff;margin-bottom:1.8rem;letter-spacing:-0.01em;}
+.sm-hero__title em{color:#F5F5F2;font-style:italic;font-weight:400;display:block;}
+.sm-hero__sub{font-size:16px;color:#9a9590;font-weight:300;line-height:1.75;max-width:360px;margin-bottom:2.5rem;}
+.sm-hero__badges{display:flex;gap:10px;flex-wrap:wrap;}
+.sm-hero__badge{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#9a9590;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;padding:6px 14px;border-radius:100px;}
+.sm-hero__visual{position:relative;min-height:520px;background:#161a19;overflow:hidden;}
+.sm-hero__visual video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.sm-hero__visual::after{content:'';position:absolute;inset:0;background:linear-gradient(250deg,transparent 50%,rgba(31,35,34,0.5) 100%);z-index:1;}
+
+/* ══════════════════════════════
+   2. STATS
+══════════════════════════════ */
+.sm-stats{background:#F5F5F2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #e0ddd5;}
+.sm-stats__item{padding:2.8rem 1rem;text-align:center;border-right:1px solid #e0ddd5;position:relative;transition:background 0.3s ease;}
+.sm-stats__item:last-child{border-right:none;}
+.sm-stats__item::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:#1f2322;transform:scaleX(0);transition:transform 0.4s ease;}
+.sm-stats__item:hover{background:#eaeae7;}
+.sm-stats__item:hover::after{transform:scaleX(1);}
+.sm-stats__num{font-family:'Bai Jamjuree',sans-serif;font-size:3rem;font-weight:900;color:#1f2322;line-height:1;display:block;}
+.sm-stats__lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#9a9080;margin-top:8px;display:block;}
+
+/* ══════════════════════════════
+   3. BENEFICIOS
+══════════════════════════════ */
+.sm-feat{background:#1f2322;padding:7rem 6vw;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.sm-feat__copy h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:900;color:#ffffff;line-height:1.05;margin-bottom:1.2rem;text-align:center;}
+.sm-feat__copy h2 em{color:#c8c4bc;font-style:italic;font-weight:400;}
+.sm-feat__copy p{font-size:16px;color:#b0aca6;line-height:1.8;max-width:420px;margin-bottom:2.5rem;}
+.sm-feat__list{display:flex;flex-direction:column;gap:0;}
+.sm-feat__item{display:flex;align-items:center;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.sm-feat__item:last-child{border-bottom:none;}
+.sm-feat__num{width:44px;height:44px;min-width:44px;border-radius:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-family:'Bai Jamjuree',sans-serif;font-size:1.2rem;font-weight:900;color:#c8c4bc;}
+.sm-feat__info strong{display:block;font-size:15px;font-weight:700;color:#ffffff;margin-bottom:2px;}
+.sm-feat__info span{font-size:13px;color:#a8a49e;font-weight:300;}
+.sm-feat__visual{border-radius:0;overflow:hidden;background:#161a19;position:relative;min-height:520px;margin:-7rem -6vw -7rem 0;align-self:stretch;}
+.sm-feat__visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+
+/* ══════════════════════════════
+   4. VISUAL BREAK
+══════════════════════════════ */
+.sm-visual-break{position:relative;height:420px;overflow:hidden;background:#161a19;}
+.sm-visual-break img{width:100%;height:100%;object-fit:cover;object-position:center 40%;}
+.sm-visual-break__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(31,35,34,0.88) 0%,rgba(31,35,34,0.35) 55%,transparent 100%);display:flex;align-items:center;padding:0 8vw;}
+.sm-visual-break__text{max-width:420px;}
+.sm-visual-break__text h3{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;color:#ffffff;line-height:1.1;margin-bottom:0.8rem;}
+.sm-visual-break__text h3 em{color:#c8c4bc;font-style:italic;font-weight:400;}
+.sm-visual-break__text p{font-size:15px;color:#c0bcb6;line-height:1.7;}
+
+/* ══════════════════════════════
+   5. EXPLORA (hotspots)
+══════════════════════════════ */
+.sm-explora{background:#F5F5F2;padding:7rem 6vw;}
+.sm-explora__head{margin-bottom:3.5rem;}
+.sm-explora__head h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.9rem,2.8vw,2.8rem);font-weight:900;color:#1a1917;text-align:center;margin-bottom:8px;letter-spacing:-0.01em;}
+.sm-explora__head p{font-size:16px;color:#6a6560;text-align:center;}
+.sm-explora__layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.hs-wrap{position:relative;display:block;line-height:0;border-radius:16px;overflow:hidden;}
+.hs-wrap img{width:100%;display:block;}
+.hs-pin{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:10;}
+.hs-ring{width:32px;height:32px;border-radius:50%;border:2px solid #ff5c02;background:rgba(255,92,2,0.12);display:flex;align-items:center;justify-content:center;animation:hs-pulse 2.5s ease infinite;transition:background 0.2s;}
+.hs-pin:hover .hs-ring{background:rgba(255,92,2,0.28);}
+.hs-num{font-size:11px;font-weight:700;color:#ff5c02;font-family:'Bai Jamjuree',sans-serif;}
+.hs-tooltip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1f2322;border:1px solid rgba(255,92,2,0.4);border-radius:8px;padding:10px 14px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.15s;box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.hs-pin:hover .hs-tooltip{opacity:1;}
+.hs-ttitle{font-size:12px;font-weight:700;color:#F5F5F2;margin-bottom:2px;font-family:'Bai Jamjuree',sans-serif;}
+.hs-tdesc{font-size:11px;color:#9a9590;font-family:'Bai Jamjuree',sans-serif;line-height:1.4;}
+@keyframes hs-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,92,2,0.4);}50%{box-shadow:0 0 0 8px rgba(255,92,2,0);}}
+.sm-hs-acc{display:flex;flex-direction:column;}
+.sm-hs-item{border-bottom:1px solid #e0ddd5;}
+.sm-hs-item:first-child{border-top:1px solid #e0ddd5;}
+.sm-hs-btn{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 0;text-align:left;}
+.sm-hs-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid #d0cdc4;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#9a9590;font-family:'Bai Jamjuree',sans-serif;flex-shrink:0;transition:border-color 0.2s,background 0.2s,color 0.2s;}
+.sm-hs-item.is-open .sm-hs-dot{border-color:#ff5c02;background:#ff5c02;color:#fff;}
+.sm-hs-title{font-size:14px;font-weight:700;color:#1a1917;font-family:'Bai Jamjuree',sans-serif;flex:1;}
+.sm-hs-icon{font-size:18px;color:#9a9590;transition:transform 0.25s,color 0.2s;line-height:1;}
+.sm-hs-item.is-open .sm-hs-icon{transform:rotate(45deg);color:#ff5c02;}
+.sm-hs-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.sm-hs-item.is-open .sm-hs-body{max-height:160px;}
+.sm-hs-body p{font-size:13px;font-weight:300;color:#6a6560;line-height:1.65;padding:0 0 18px 42px;font-family:'Bai Jamjuree',sans-serif;}
+
+/* ══════════════════════════════
+   6. RECETA
+══════════════════════════════ */
+.sm-recipe{background:#1f2322;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;min-height:560px;}
+.sm-recipe__visual{position:relative;background:#161a19;overflow:hidden;min-height:420px;}
+.sm-recipe__visual video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.sm-recipe__content{padding:7rem 6vw 7rem 5vw;display:flex;flex-direction:column;justify-content:center;}
+.sm-recipe__title{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:900;color:#ffffff;line-height:1.05;margin-bottom:0.8rem;letter-spacing:-0.01em;}
+.sm-recipe__sub{font-size:15px;color:#9a9590;font-weight:300;line-height:1.75;max-width:360px;margin-bottom:2.4rem;}
+.sm-recipe__steps{display:flex;flex-direction:column;gap:14px;}
+.sm-recipe__step{display:flex;gap:14px;align-items:flex-start;}
+.sm-recipe__snum{width:24px;height:24px;min-width:24px;border-radius:50%;background:rgba(245,245,242,0.1);border:1px solid rgba(245,245,242,0.2);color:#c8c4bc;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px;flex-shrink:0;}
+.sm-recipe__stext{font-size:14px;color:#a8a49e;font-weight:300;line-height:1.65;}
+.sm-recipe__stext strong{color:#F5F5F2;font-weight:600;}
+
+/* ══════════════════════════════
+   7. FUNCIONES
+══════════════════════════════ */
+.sm-func{background:#F5F5F2;padding:7rem 6vw;}
+.sm-func__head{margin-bottom:3.5rem;}
+.sm-func__head h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.9rem,2.8vw,2.8rem);font-weight:900;color:#1a1917;text-align:center;margin-bottom:8px;letter-spacing:-0.01em;}
+.sm-func__head p{font-size:16px;color:#6a6560;text-align:center;}
+.sm-func__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.sm-func__card{background:#fff;border:1px solid #e0ddd5;border-radius:16px;padding:1.8rem 1.4rem;display:flex;flex-direction:column;gap:10px;transition:border-color 0.25s,box-shadow 0.25s;}
+.sm-func__card:hover{border-color:rgba(31,35,34,0.3);box-shadow:0 6px 24px rgba(0,0,0,0.07);}
+.sm-func__cicon{width:36px;height:36px;}
+.sm-func__cicon img{width:100%;height:100%;object-fit:contain;display:block;}
+.sm-func__cname{font-size:13px;font-weight:700;color:#1a1917;}
+.sm-func__cdesc{font-size:12px;font-weight:300;color:#6a6560;line-height:1.55;}
+
+/* ══════════════════════════════
+   8. SPECS
+══════════════════════════════ */
+.sm-specs{padding:7rem 6vw;background:#F5F5F2;border-top:1px solid #e0ddd5;}
+.sm-specs__head{margin-bottom:3.5rem;}
+.sm-specs__head h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:900;color:#1f2322;text-align:center;}
+.sm-specs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2e2d;border:1px solid #2a2e2d;border-radius:16px;overflow:hidden;max-width:900px;margin:0 auto;}
+.sm-sitem{background:#161a19;padding:2rem;transition:background 0.25s;cursor:default;}
+.sm-sitem:hover{background:#2a2e2d;}
+.sm-sitem span{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#9a9590;margin-bottom:6px;}
+.sm-sitem strong{font-family:'Bai Jamjuree',sans-serif;font-size:1.6rem;color:#F5F5F2;}
+
+/* ══════════════════════════════
+   9. FAQ
+══════════════════════════════ */
+.sm-faq{padding:6rem 5vw;background:#1f2322;}
+.sm-faq__inner{max-width:780px;margin:0 auto;}
+.sm-faq__head{margin-bottom:3rem;}
+.sm-faq__head h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:900;color:#ffffff;text-align:center;}
+.sm-fitem{border-bottom:1px solid #2a2e2d;}
+.sm-fitem:first-of-type{border-top:1px solid #2a2e2d;}
+.sm-fbtn{width:100%;padding:1.4rem 0;background:none;border:none;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:16px;font-weight:700;color:#c8c4bc;text-align:left;gap:1rem;}
+.sm-ficon{width:24px;height:24px;border-radius:50%;background:#2a2e2d;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#F5F5F2;flex-shrink:0;transition:all 0.35s ease;}
+.sm-fitem.is-open .sm-ficon{background:#F5F5F2;color:#1f2322;transform:rotate(45deg);}
+.sm-fans{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.165,0.84,0.44,1);color:#a8a49e;font-size:15px;line-height:1.75;}
+.sm-fitem.is-open .sm-fans{max-height:300px;}
+.sm-fans__inner{padding-bottom:1.5rem;}
+
+/* ══════════════════════════════
+   10. CLOSER
+══════════════════════════════ */
+.sm-closer{background:#1f2322;padding:8rem 5vw;position:relative;overflow:hidden;border-radius:0 0 28px 28px;}
+.sm-closer::before,.sm-closer::after{content:'';position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(245,245,242,0.06) 0%,transparent 70%);}
+.sm-closer::before{width:600px;height:600px;top:-200px;right:-100px;}
+.sm-closer::after{width:400px;height:400px;bottom:-150px;left:-50px;}
+.sm-closer__inner{position:relative;z-index:2;max-width:700px;margin:0 auto;text-align:center;}
+.sm-closer__inner .sm-label{justify-content:center;}
+.sm-closer h2{font-family:'Bai Jamjuree',sans-serif;font-size:clamp(3rem,6vw,5rem);font-weight:900;color:#ffffff;line-height:1.05;margin-bottom:1.2rem;}
+.sm-closer h2 em{color:#c8c4bc;font-style:italic;font-weight:400;}
+.sm-closer p{font-size:17px;color:#b0aca6;line-height:1.7;}
+.sm-closer__watermark{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:1;width:600px;max-width:80%;}
+.sm-closer__watermark img{width:100%;opacity:0.09;user-select:none;display:block;}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width:1024px){
+  .sm-w{width:100%;margin:0 auto;border-radius:0;box-shadow:none;}
+  .sm-hero{grid-template-columns:1fr;border-radius:0;}
+  .sm-hero__visual{min-height:0;aspect-ratio:1/1;}
+  .sm-stats{grid-template-columns:repeat(2,1fr);}
+  .sm-stats__item:nth-child(2){border-right:none;}
+  .sm-stats__item:nth-child(3){border-top:1px solid #e0ddd5;}
+  .sm-stats__item:nth-child(4){border-top:1px solid #e0ddd5;border-right:none;}
+  .sm-feat{grid-template-columns:1fr;gap:3rem;}
+  .sm-feat__visual{border-radius:20px;margin:0;min-height:340px;align-self:auto;}
+  .sm-explora__layout{grid-template-columns:1fr;}
+  .sm-recipe{grid-template-columns:1fr;}
+  .sm-recipe__visual{min-height:0;aspect-ratio:1/1;}
+  .sm-recipe__content{padding:4rem 6vw;}
+  .sm-func__grid{grid-template-columns:repeat(2,1fr);}
+  .sm-specs__grid{grid-template-columns:repeat(2,1fr);}
+  .sm-visual-break{height:340px;}
+  .sm-closer{border-radius:0;}
+}
+@media (max-width:640px){
+  .sm-hero__copy{padding:3.5rem 6vw;}
+  .sm-feat{padding:5rem 6vw;}
+  .sm-explora{padding:5rem 6vw;}
+  .sm-func{padding:5rem 6vw;}
+  .sm-func__grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .sm-recipe__content{padding:3.5rem 6vw;}
+  .sm-specs{padding:5rem 6vw;}
+  .sm-visual-break{height:280px;}
+  .sm-visual-break__text h3{font-size:1.5rem;}
+}
+</style>
+
+<!-- ══ 1. HERO ══ -->
+<section class="sm-hero">
+  <div class="sm-hero__copy">
+    <span class="sm-eyebrow">Robot de Cocina Robert &mdash; FDV</span>
+    <h2 class="sm-hero__title">Cocina m&aacute;s.<br><em>Piensa menos.</em></h2>
+    <p class="sm-hero__sub">15 programas autom&aacute;ticos, pantalla touch de 25,4 cm y pesa integrada. Todo lo que necesitas para dominar la cocina en un solo equipo.</p>
+    <div class="sm-hero__badges">
+      <span class="sm-hero__badge">1400 W</span>
+      <span class="sm-hero__badge">4,5 L</span>
+      <span class="sm-hero__badge">15 Programas</span>
+      <span class="sm-hero__badge">+400 Recetas gratis</span>
+    </div>
+  </div>
+  <div class="sm-hero__visual">
+    <video src="https://www.kitchencenter.cl/cdn/shop/videos/c/vp/12b1cafc44dc4340a861e61188c2e95f/12b1cafc44dc4340a861e61188c2e95f.HD-1080p-7.2Mbps-79299590.mp4?v=0" autoplay loop muted playsinline preload="none"></video>
+  </div>
+</section>
+
+<!-- ══ 2. STATS ══ -->
+<section class="sm-stats">
+  <div class="sm-stats__item sm-reveal"><span class="sm-stats__num">4,5L</span><span class="sm-stats__lbl">Capacidad del vaso</span></div>
+  <div class="sm-stats__item sm-reveal sm-reveal-d1"><span class="sm-stats__num">1400W</span><span class="sm-stats__lbl">Potencia del motor</span></div>
+  <div class="sm-stats__item sm-reveal sm-reveal-d2"><span class="sm-stats__num">15</span><span class="sm-stats__lbl">Programas autom&aacute;ticos</span></div>
+  <div class="sm-stats__item sm-reveal sm-reveal-d3"><span class="sm-stats__num" style="font-size:1.6rem;line-height:1.2;">+400<br>recetas</span><span class="sm-stats__lbl">Incluidas sin costo</span></div>
+</section>
+
+<!-- ══ 3. BENEFICIOS ══ -->
+<section class="sm-feat">
+  <div class="sm-feat__copy sm-reveal">
+    <span class="sm-label sm-label--dark">Por qu&eacute; Robert</span>
+    <h2>M&aacute;s potencia.<br><em>M&aacute;s libertad.</em></h2>
+    <p>El robot de cocina m&aacute;s completo del mercado. Mayor capacidad, pantalla m&aacute;s grande y accesorios incluidos que en otras marcas son opcionales.</p>
+    <div class="sm-feat__list">
+      <div class="sm-feat__item">
+        <div class="sm-feat__num">1</div>
+        <div class="sm-feat__info"><strong>Vaso de mayor capacidad</strong><span>4,5 L brutos &mdash; cocina para toda la familia sin dividir preparaciones</span></div>
+      </div>
+      <div class="sm-feat__item">
+        <div class="sm-feat__num">2</div>
+        <div class="sm-feat__info"><strong>Pantalla touch 25,4 cm</strong><span>La m&aacute;s grande de su categor&iacute;a &mdash; sigue recetas paso a paso con facilidad</span></div>
+      </div>
+      <div class="sm-feat__item">
+        <div class="sm-feat__num">3</div>
+        <div class="sm-feat__info"><strong>+400 recetas completamente gratis</strong><span>Sin suscripci&oacute;n. Sin costos adicionales. Incluidas desde el primer d&iacute;a</span></div>
+      </div>
+      <div class="sm-feat__item">
+        <div class="sm-feat__num">4</div>
+        <div class="sm-feat__info"><strong>Funci&oacute;n dorar real a +160&deg;C</strong><span>Sella y dora como una sart&eacute;n &mdash; algo que otros robots no logran de verdad</span></div>
+      </div>
+      <div class="sm-feat__item">
+        <div class="sm-feat__num">5</div>
+        <div class="sm-feat__info"><strong>Accesorio laminador/rallador incluido</strong><span>En otras marcas vale cerca de $200.000 &mdash; aqu&iacute; viene en el set sin costo extra</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sm-feat__visual sm-reveal sm-reveal-d1">
+    <img src="https://www.kitchencenter.cl/cdn/shop/files/robot-de-cocina-robert-15-lts-fdv-fdv-13.jpg?v=1774324912&width=823" alt="Robot de Cocina Robert FDV" loading="lazy">
+  </div>
+</section>
+
+<!-- ══ 4. VISUAL BREAK ══ -->
+<div class="sm-visual-break sm-reveal">
+  <img src="https://www.kitchencenter.cl/cdn/shop/files/robot-de-cocina-robert-15-lts-fdv-fdv-5.jpg?v=1774324902&width=823" alt="Robert FDV en modo balanza" loading="lazy">
+  <div class="sm-visual-break__overlay">
+    <div class="sm-visual-break__text">
+      <h3>Pesa, mezcla<br><em>y cocina.</em></h3>
+      <p>Balanza integrada para medir cada ingrediente con precisi&oacute;n. Sin recipientes extra, sin pasos de m&aacute;s.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 5. EXPLORA ══ -->
+<section class="sm-explora">
+  <div class="sm-explora__head sm-reveal">
+    <span class="sm-label sm-label--beige" style="justify-content:center;">Conoce cada detalle</span>
+    <h2>Explora Robert por dentro</h2>
+    <p>Haz clic en cada punto para descubrir qu&eacute; hace especial a cada componente.</p>
+  </div>
+  <div class="sm-explora__layout sm-reveal sm-reveal-d1">
+    <div class="hs-wrap">
+      <img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/f6d7de_7.png?v=1774440680" alt="Explora el Robot de Cocina Robert FDV" loading="lazy">
+      <div class="hs-pin" style="left:39.99%;top:67.4%" data-index="0">
+        <div class="hs-ring"><span class="hs-num">1</span></div>
+        <div class="hs-tooltip"><div class="hs-ttitle">Motor 1400 W</div><div class="hs-tdesc">Potencia real para todas las tareas</div></div>
+      </div>
+      <div class="hs-pin" style="left:59.64%;top:32.23%" data-index="1">
+        <div class="hs-ring"><span class="hs-num">2</span></div>
+        <div class="hs-tooltip"><div class="hs-ttitle">Pantalla touch 25,4 cm</div><div class="hs-tdesc">La m&aacute;s grande de su categor&iacute;a</div></div>
+      </div>
+      <div class="hs-pin" style="left:75.16%;top:68.77%" data-index="2">
+        <div class="hs-ring"><span class="hs-num">3</span></div>
+        <div class="hs-tooltip"><div class="hs-ttitle">Set de accesorios</div><div class="hs-tdesc">Cuchilla, amasadora, rallador y m&aacute;s</div></div>
+      </div>
+      <div class="hs-pin" style="left:56.76%;top:11.45%" data-index="3">
+        <div class="hs-ring"><span class="hs-num">4</span></div>
+        <div class="hs-tooltip"><div class="hs-ttitle">Tapa y varoma</div><div class="hs-tdesc">Cocci&oacute;n al vapor de gran capacidad</div></div>
+      </div>
+      <div class="hs-pin" style="left:75.28%;top:24.47%" data-index="4">
+        <div class="hs-ring"><span class="hs-num">5</span></div>
+        <div class="hs-tooltip"><div class="hs-ttitle">Vaso 4,5 L</div><div class="hs-tdesc">El m&aacute;s grande de su categor&iacute;a</div></div>
+      </div>
+    </div>
+    <div class="sm-hs-acc">
+      <div class="sm-hs-item" data-acc="0">
+        <button class="sm-hs-btn"><span class="sm-hs-dot">1</span><span class="sm-hs-title">Motor 1400 W</span><span class="sm-hs-icon">+</span></button>
+        <div class="sm-hs-body"><p>Motor de alta potencia que garantiza rendimiento constante en todas las funciones: triturar, amasar, mezclar o dorar. Dise&ntilde;ado para uso intensivo sin sobrecalentamiento.</p></div>
+      </div>
+      <div class="sm-hs-item" data-acc="1">
+        <button class="sm-hs-btn"><span class="sm-hs-dot">2</span><span class="sm-hs-title">Pantalla touch 25,4 cm</span><span class="sm-hs-icon">+</span></button>
+        <div class="sm-hs-body"><p>Interfaz intuitiva con acceso directo a los 15 programas autom&aacute;ticos. Ajusta temperatura, velocidad y tiempo en tiempo real desde la pantalla m&aacute;s grande de su categor&iacute;a.</p></div>
+      </div>
+      <div class="sm-hs-item" data-acc="2">
+        <button class="sm-hs-btn"><span class="sm-hs-dot">3</span><span class="sm-hs-title">Set completo de accesorios</span><span class="sm-hs-icon">+</span></button>
+        <div class="sm-hs-body"><p>Incluye cuchilla de 4 aspas, paleta mezcladora, amasadora, cesta de acero inoxidable, rallador/laminador y set de vapor. Todo incluido sin costo adicional.</p></div>
+      </div>
+      <div class="sm-hs-item" data-acc="3">
+        <button class="sm-hs-btn"><span class="sm-hs-dot">4</span><span class="sm-hs-title">Tapa y varoma</span><span class="sm-hs-icon">+</span></button>
+        <div class="sm-hs-body"><p>Sistema de cocci&oacute;n al vapor de gran capacidad. Permite preparar verduras, pescados y m&aacute;s en una sola tanda, con cierre herm&eacute;tico de seguridad durante la cocci&oacute;n.</p></div>
+      </div>
+      <div class="sm-hs-item" data-acc="4">
+        <button class="sm-hs-btn"><span class="sm-hs-dot">5</span><span class="sm-hs-title">Vaso 4,5 L</span><span class="sm-hs-icon">+</span></button>
+        <div class="sm-hs-body"><p>Vaso de acero inoxidable con capacidad bruta de 4,5 L y neta de 3 L. El m&aacute;s grande de su categor&iacute;a: ideal para cocinar para toda la familia sin dividir preparaciones.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 6. RECETA ══ -->
+<section class="sm-recipe">
+  <div class="sm-recipe__visual">
+    <video src="https://cdn.shopify.com/videos/c/o/v/e38167274001461689814588ab2d3f55.mov" autoplay loop muted playsinline preload="none"></video>
+  </div>
+  <div class="sm-recipe__content sm-reveal">
+    <span class="sm-label sm-label--dark">Robert en acci&oacute;n</span>
+    <h2 class="sm-recipe__title">Estofado de Ternera</h2>
+    <p class="sm-recipe__sub">Desde el sofrito hasta la cocci&oacute;n lenta &mdash; Robert hace el trabajo. T&uacute; solo agregas los ingredientes.</p>
+    <div class="sm-recipe__steps">
+      <div class="sm-recipe__step">
+        <div class="sm-recipe__snum">1</div>
+        <p class="sm-recipe__stext"><strong>Dorar la ternera</strong> en el vaso con un poco de aceite. Funci&oacute;n dorar a temperatura alta hasta sellar bien la carne por todos lados.</p>
+      </div>
+      <div class="sm-recipe__step">
+        <div class="sm-recipe__snum">2</div>
+        <p class="sm-recipe__stext"><strong>Agregar cebolla, zanahoria y tomate.</strong> Sofre&iacute;r con la funci&oacute;n cocinar hasta que los vegetales est&eacute;n blandos y arom&aacute;ticos.</p>
+      </div>
+      <div class="sm-recipe__step">
+        <div class="sm-recipe__snum">3</div>
+        <p class="sm-recipe__stext"><strong>Incorporar caldo, vino y especias.</strong> Programar slow cook durante 90 minutos. Robert mantiene la temperatura constante sin que tengas que estar presente.</p>
+      </div>
+      <div class="sm-recipe__step">
+        <div class="sm-recipe__snum">4</div>
+        <p class="sm-recipe__stext"><strong>Servir directamente desde el vaso.</strong> La carne queda tierna, jugosa y con todo el sabor concentrado del estofado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. FUNCIONES ══ -->
+<section class="sm-func">
+  <div class="sm-func__head sm-reveal">
+    <span class="sm-label sm-label--beige" style="justify-content:center;">Versatilidad total</span>
+    <h2>Un robot, infinitas posibilidades</h2>
+    <p>Todas las funciones que necesitas para cocinar sin l&iacute;mites, reunidas en un solo equipo.</p>
+  </div>
+  <div class="sm-func__grid">
+    <div class="sm-func__card sm-reveal sm-reveal-d1">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-steam.png" alt="Vapor" width="36" height="36"></div>
+      <div class="sm-func__cname">Cocci&oacute;n al vapor</div>
+      <div class="sm-func__cdesc">Preserva nutrientes y sabor sin grasas adicionales.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d1">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-sousvide.png" alt="Sous Vide" width="36" height="36"></div>
+      <div class="sm-func__cname">Sous vide</div>
+      <div class="sm-func__cdesc">Temperatura de precisi&oacute;n para resultados de restaurante.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d2">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-sear.png" alt="Dorar" width="36" height="36"></div>
+      <div class="sm-func__cname">Dorar</div>
+      <div class="sm-func__cdesc">Supera los 160&deg;C para sellar alimentos de verdad.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d2">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-knead.png" alt="Amasar" width="36" height="36"></div>
+      <div class="sm-func__cname">Amasar</div>
+      <div class="sm-func__cdesc">Masa de pan, pizza o pasta lista en minutos.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d2">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-ferment.png" alt="Fermentar" width="36" height="36"></div>
+      <div class="sm-func__cname">Fermentar</div>
+      <div class="sm-func__cdesc">Temperatura constante para yogur, masa madre y m&aacute;s.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d2">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-slowcook.png" alt="Slow Cook" width="36" height="36"></div>
+      <div class="sm-func__cname">Slow cook</div>
+      <div class="sm-func__cdesc">Cocci&oacute;n lenta y controlada para guisos y estofados.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d3">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-scale.png" alt="Pesar" width="36" height="36"></div>
+      <div class="sm-func__cname">Pesar</div>
+      <div class="sm-func__cdesc">Balanza integrada para medir ingredientes con precisi&oacute;n.</div>
+    </div>
+    <div class="sm-func__card sm-reveal sm-reveal-d3">
+      <div class="sm-func__cicon"><img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/icon-process.png" alt="Procesar" width="36" height="36"></div>
+      <div class="sm-func__cname">Procesar</div>
+      <div class="sm-func__cdesc">Laminado y rallado incluidos &mdash; accesorio de $200.000 gratis.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 8. SPECS ══ -->
+<section class="sm-specs">
+  <div class="sm-specs__head sm-reveal">
+    <span class="sm-label sm-label--beige">Ficha t&eacute;cnica</span>
+    <h2>Precisi&oacute;n en cada detalle</h2>
+  </div>
+  <div class="sm-specs__grid sm-reveal sm-reveal-d1">
+    <div class="sm-sitem"><span>Potencia motor</span><strong>1400 W</strong></div>
+    <div class="sm-sitem"><span>Potencia calent.</span><strong>1000 W</strong></div>
+    <div class="sm-sitem"><span>Capacidad bruta</span><strong>4,5 L</strong></div>
+    <div class="sm-sitem"><span>Capacidad neta</span><strong>3 L</strong></div>
+    <div class="sm-sitem"><span>Temperatura</span><strong>37°C – 130°C</strong></div>
+    <div class="sm-sitem"><span>Funci&oacute;n dorar</span><strong>&gt; 160°C</strong></div>
+    <div class="sm-sitem"><span>Programas auto.</span><strong>15</strong></div>
+    <div class="sm-sitem"><span>Pantalla</span><strong>Touch 25,4 cm</strong></div>
+    <div class="sm-sitem"><span>Pesa integrada</span><strong>S&iacute;</strong></div>
+    <div class="sm-sitem"><span>Recetas incluidas</span><strong>+400 gratis</strong></div>
+  </div>
+</section>
+
+<!-- ══ 9. FAQ ══ -->
+<section class="sm-faq">
+  <div class="sm-faq__inner sm-reveal">
+    <div class="sm-faq__head">
+      <span class="sm-label sm-label--dark">Resolvemos tus dudas</span>
+      <h2>Preguntas Frecuentes</h2>
+    </div>
+    <div class="sm-faq__list">
+      <div class="sm-fitem">
+        <button class="sm-fbtn"><h3 style="margin:0;font-size:inherit;font-weight:inherit;color:inherit;">&#191;Qu&eacute; diferencia a Robert de otros robots de cocina del mercado?</h3><span class="sm-ficon">+</span></button>
+        <div class="sm-fans"><div class="sm-fans__inner"><h4 style="margin:0;font-size:inherit;font-weight:400;color:inherit;">Robert destaca por su vaso de mayor capacidad (4,5 L), su pantalla touch de 25,4 cm &mdash; la m&aacute;s grande de su categor&iacute;a &mdash; y su funci&oacute;n dorar que supera los 160&deg;C, algo que muchos robots no logran de forma efectiva. Adem&aacute;s, incluye m&aacute;s de 400 recetas completamente gratuitas y el accesorio laminador/rallador incluido en el set. &iquest;Hay alguna funci&oacute;n espec&iacute;fica que quieras comparar?</h4></div></div>
+      </div>
+      <div class="sm-fitem">
+        <button class="sm-fbtn"><h3 style="margin:0;font-size:inherit;font-weight:inherit;color:inherit;">&#191;Puedo usar Robert para cocinar para grupos grandes?</h3><span class="sm-ficon">+</span></button>
+        <div class="sm-fans"><div class="sm-fans__inner"><h4 style="margin:0;font-size:inherit;font-weight:400;color:inherit;">S&iacute;. El vaso tiene una capacidad bruta de 4,5 L y neta de 3 L, ideal para preparar recetas para 6 a 8 personas sin dividir preparaciones. El sistema de cocci&oacute;n al vapor tambi&eacute;n cuenta con gran capacidad para procesar m&aacute;s alimentos en una sola tanda. &iquest;Cocinas habitualmente para familia numerosa o para eventos?</h4></div></div>
+      </div>
+      <div class="sm-fitem">
+        <button class="sm-fbtn"><h3 style="margin:0;font-size:inherit;font-weight:inherit;color:inherit;">&#191;Qu&eacute; accesorios incluye y para qu&eacute; sirve cada uno?</h3><span class="sm-ficon">+</span></button>
+        <div class="sm-fans"><div class="sm-fans__inner"><h4 style="margin:0;font-size:inherit;font-weight:400;color:inherit;">Robert incluye: cuchilla de 4 aspas (triturar y picar), paleta mezcladora (salsas y cremas sin picar), amasadora (pan, pizza y pasta), cesta de acero (vapor dentro del vaso), rallador/laminador (vegetales, quesos) y set de varoma para vapor externo. Es un set completo que cubre pr&aacute;cticamente todas las t&eacute;cnicas de cocina. &iquest;Cu&aacute;l de estos accesorios te interesa m&aacute;s explorar?</h4></div></div>
+      </div>
+      <div class="sm-fitem">
+        <button class="sm-fbtn"><h3 style="margin:0;font-size:inherit;font-weight:inherit;color:inherit;">&#191;C&oacute;mo funciona la funci&oacute;n dorar y en qu&eacute; se diferencia?</h3><span class="sm-ficon">+</span></button>
+        <div class="sm-fans"><div class="sm-fans__inner"><h4 style="margin:0;font-size:inherit;font-weight:400;color:inherit;">La funci&oacute;n dorar de Robert alcanza temperaturas superiores a 160&deg;C, lo que permite sellar carnes y sofre&iacute;r con caramelizaci&oacute;n real directamente en el vaso. En la mayor&iacute;a de los robots esto es limitado porque no alcanzan temperaturas suficientes para lograr el efecto Maillard. En Robert s&iacute; funciona de verdad. &iquest;Te gustar&iacute;a ver un ejemplo de receta donde se use esta funci&oacute;n?</h4></div></div>
+      </div>
+      <div class="sm-fitem">
+        <button class="sm-fbtn"><h3 style="margin:0;font-size:inherit;font-weight:inherit;color:inherit;">&#191;Las recetas incluidas tienen costo adicional o requieren suscripci&oacute;n?</h3><span class="sm-ficon">+</span></button>
+        <div class="sm-fans"><div class="sm-fans__inner"><h4 style="margin:0;font-size:inherit;font-weight:400;color:inherit;">No. Las m&aacute;s de 400 recetas disponibles en la plataforma de Robert son completamente gratuitas y est&aacute;n incluidas con el equipo. Sin suscripci&oacute;n mensual ni pago adicional de ning&uacute;n tipo &mdash; una diferencia importante frente a otras marcas del mercado. &iquest;Te gustar&iacute;a saber qu&eacute; tipos de recetas est&aacute;n disponibles?</h4></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 10. CLOSER ══ -->
+<section class="sm-closer">
+  <div class="sm-closer__inner sm-reveal">
+    <span class="sm-label sm-label--dark">Robot de Cocina FDV</span>
+    <h2>Robert.<br><em>El robot que cocina contigo.</em></h2>
+    <p>1400 W de potencia, 15 programas autom&aacute;ticos y m&aacute;s de 400 recetas gratuitas. Todo lo que necesitas para transformar tu cocina &mdash; sin complicaciones.</p>
+  </div>
+  <div class="sm-closer__watermark">
+    <img src="https://cdn.shopify.com/s/files/1/0104/4391/5319/files/Logo-FDV_Blanco.png?v=1773856404" alt="" aria-hidden="true">
+  </div>
+</section>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.sm-w .sm-reveal').forEach(function(el){obs.observe(el);});
+
+  var fitems=document.querySelectorAll('.sm-w .sm-fitem');
+  fitems.forEach(function(item){
+    item.querySelector('.sm-fbtn').addEventListener('click',function(){
+      var isOpen=item.classList.contains('is-open');
+      fitems.forEach(function(i){i.classList.remove('is-open');});
+      if(!isOpen)item.classList.add('is-open');
+    });
+  });
+
+  var hsItems=document.querySelectorAll('.sm-w .sm-hs-item');
+  hsItems.forEach(function(item){
+    item.querySelector('.sm-hs-btn').addEventListener('click',function(){
+      var isOpen=item.classList.contains('is-open');
+      hsItems.forEach(function(i){i.classList.remove('is-open');});
+      if(!isOpen)item.classList.add('is-open');
+    });
+  });
+
+  document.querySelectorAll('.sm-w .hs-pin').forEach(function(pin){
+    pin.addEventListener('click',function(){
+      var idx=parseInt(pin.getAttribute('data-index'));
+      var target=hsItems[idx];
+      if(!target)return;
+      var isOpen=target.classList.contains('is-open');
+      hsItems.forEach(function(i){i.classList.remove('is-open');});
+      if(!isOpen){target.classList.add('is-open');target.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    });
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "Robot de Cocina Robert FDV",
+      "description": "Robot de cocina multifuncional con 15 programas automáticos, pantalla touch de 25,4 cm, pesa integrada, motor de 1400 W y capacidad de vaso de 4,5 L. Incluye más de 400 recetas gratuitas y set completo de accesorios.",
+      "brand": {"@type":"Brand","name":"FDV"},
+      "offers": {"@type":"Offer","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Kitchen Center"}}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"¿Qué diferencia a Robert de otros robots de cocina del mercado?","acceptedAnswer":{"@type":"Answer","text":"Robert destaca por su vaso de mayor capacidad (4,5 L), su pantalla touch de 25,4 cm y su función dorar que supera los 160°C. Incluye más de 400 recetas completamente gratuitas y el accesorio laminador/rallador incluido en el set."}},
+        {"@type":"Question","name":"¿Puedo usar Robert para cocinar para grupos grandes?","acceptedAnswer":{"@type":"Answer","text":"Sí. El vaso tiene una capacidad bruta de 4,5 L y neta de 3 L, ideal para preparar recetas para 6 a 8 personas sin dividir preparaciones."}},
+        {"@type":"Question","name":"¿Qué accesorios incluye y para qué sirve cada uno?","acceptedAnswer":{"@type":"Answer","text":"Incluye cuchilla de 4 aspas, paleta mezcladora, amasadora, cesta de acero inoxidable, rallador/laminador y set de varoma para cocción al vapor."}},
+        {"@type":"Question","name":"¿Cómo funciona la función dorar y en qué se diferencia?","acceptedAnswer":{"@type":"Answer","text":"La función dorar de Robert alcanza temperaturas superiores a 160°C, permitiendo sellar carnes y sofreír con caramelización real directamente en el vaso."}},
+        {"@type":"Question","name":"¿Las recetas incluidas tienen costo adicional o requieren suscripción?","acceptedAnswer":{"@type":"Answer","text":"No. Las más de 400 recetas son completamente gratuitas y están incluidas con el equipo, sin suscripción ni pago adicional."}}
+      ]
+    }
+  ]
+}
+</script>
+</div>
