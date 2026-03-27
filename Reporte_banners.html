@@ -195,13 +195,13 @@ td input:focus{background:#f0ede6;}
     <div class="metric-card"><span class="mc-label">Impresiones</span><input class="mc-input" type="text" id="m_imp" placeholder="0" oninput="sv();calcCTR()"><span class="mc-suffix">vistas totales</span></div>
     <div class="metric-card"><span class="mc-label">Clicks</span><input class="mc-input" type="text" id="m_clk" placeholder="0" oninput="sv();calcCTR()"><span class="mc-suffix">clics unicos</span></div>
     <div class="metric-card accent"><span class="mc-label">CTR</span><input class="mc-input" type="text" id="m_ctr" placeholder="0.00" oninput="sv()"><span class="mc-suffix">% (auto-calculado)</span></div>
-    <div class="metric-card"><span class="mc-label">Conversiones</span><input class="mc-input" type="text" id="m_conv" placeholder="0" oninput="sv()"></div>
+    <div class="metric-card"><span class="mc-label">Conversión</span><input class="mc-input" type="text" id="m_conv" placeholder="0" oninput="sv()"></div>
     <div class="metric-card accent"><span class="mc-label">Total Ventas</span><input class="mc-input" type="text" id="m_ven" placeholder="0" oninput="sv()"><span class="mc-suffix" id="suf_mon">CLP</span></div>
   </div>
   <div class="fg" style="max-width:300px;">
     <label>Tasa de Conversion (%)</label>
     <input type="text" id="m_tcv" placeholder="Ej. 2.4" oninput="sv()">
-    <p class="hint">Conversiones / Impresiones × 100</p>
+    <p class="hint">Conversión / Impresiones × 100</p>
   </div>
   <button class="btn-sm green" onclick="autoCalc()" style="margin-top:0.2rem;">&#8634; Recalcular todo</button>
 </div>
@@ -602,7 +602,7 @@ function buildHtml(){
   '<div class="stat"><span class="slbl">Impresiones</span><div class="sval">'+fmt(m.imp)+'</div><div class="ssub">vistas totales</div></div>'+
   '<div class="stat"><span class="slbl">Clicks</span><div class="sval">'+fmt(m.clk)+'</div></div>'+
   '<div class="stat ac"><span class="slbl">CTR</span><div class="sval">'+fmtPct(m.ctr)+'</div></div>'+
-  '<div class="stat"><span class="slbl">Conversiones</span><div class="sval">'+fmt(m.conv)+'</div></div>'+
+  '<div class="stat"><span class="slbl">Conversión</span><div class="sval">'+fmt(m.conv)+'</div></div>'+
   '<div class="stat ac"><span class="slbl">Total Ventas</span><div class="sval" style="font-size:20px;">'+fmtMon(m.ven)+'</div></div>'+
   (m.tcv?'<div class="stat"><span class="slbl">Tasa Conversión</span><div class="sval">'+fmtPct(m.tcv)+'</div></div>':'')+
   '</div>\n</div>\n\n'+
