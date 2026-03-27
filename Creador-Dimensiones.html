@@ -431,11 +431,16 @@ function selDim(i) { selIdx = i; render(); renderList(); }
 // ---- EXPORT ----
 function exportImg() {
   if (!img) { alert('Carga una imagen primero.'); return; }
+  var prev = selIdx;
+  selIdx = -1;
+  render();
   var c = document.getElementById('canvas');
   var a = document.createElement('a');
   a.download = 'dimensiones.png';
   a.href = c.toDataURL('image/png');
   a.click();
+  selIdx = prev;
+  render();
 }
 </script>
 </body>
